@@ -3,52 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco Aurélio - Meu Portfólio</title>
-    <link rel="stylesheet" href="styles.css/style.css"/>
-    <link rel="icon" type="image/x-icon" href="./img/emblema.do.infinito.jpg"/>
+    <title>Marco Aurélio | Meus Projetos</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="icon" type="image/x-icon" href="Icon.png">
 </head>
 <body>
 
-    <div class="pagina">
-        
-        <header class="cabecalho">
-            <nav>
-                <ul class="menu-navegacao">
-                    <li><a href="index.html">Sobre mim</a></li>
-                    <li><a href="projeto.html">Projetos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-            </nav>
-        </header>
+<div class="pagina">
 
-        <div class="conteudo">
-            <main>
-                <h1>MEUS PROJETOS ⚙️</h1>
-                <p>Aqui estão alguns dos projetos em que trabalhei recentemente:</p>
+    <button class="toggle-tema" id="toggleTema" title="Alternar tema">🌙</button>
 
-                <section class="lista-projetos">
-                    <article class="card-projeto">
-                        <h3>Meu Primeiro Projeto:</h3>
-                        <p>Projeto acadêmico desenvolvido em HTML, apresentando informações sobre o álbum UOTOTOGOKA, com imagem, links para música e Spotify e formulário de contato.</p>
-                        <a href="https://dscarolsz.github.io/Aula1-UOTOTOGOKA/" target="_blank" rel="noopener noreferrer">ACESSAR PROJETO</a>
-                    </article>
-                </section>
-            </main>
-        </div>
+    <header class="cabecalho">
+        <nav>
+            <ul class="menu-navegacao">
+                <li><a href="index.html">Sobre mim</a></li>
+                <li><a href="projeto.html" class="ativo">Projetos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="agradecimento.html">Agradecimento</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="conteudo">
-            <main>
-                <section class="lista-projetos">
-                    <article class="card-projeto">
-                        <h3>Meu Segundo Projeto:</h3>
-                        <p>Meu primeiro portfólio pessoal, desenvolvido para apresentar minha trajetória, formação, conhecimentos e projetos na área de tecnologia.</p>
-                        <a href="https://marcoaurelio21-ti.github.io/aula01.transforme/" target="_blank" rel="noopener noreferrer">ACESSAR PROJETO</a>
-                    </article>
-                </section>
-            </main>
-        </div>
+    <main class="conteudo">
+        <section class="introducao">
+            <h1>MEUS PROJETOS</h1>
+            <p>Aqui estão alguns dos projetos em que trabalhei recentemente:</p>
+        </section>
 
-    </div>
+        <section class="lista-projetos">
+
+            <article class="card-projeto">
+                <img src="preview-teste01.png" alt="Preview do projeto Teste01" class="preview">
+                <h2>Teste01</h2>
+                <span class="status concluido">✓ Concluído</span>
+                <p>Projeto de aprendizado no curso Transforme. Para acessar, visite o meu Instagram.</p>
+                <div class="tags">
+                    <span>HTML5</span>
+                    <span>Música</span>
+                </div>
+                <div class="botoes-projeto">
+                    <a href="https://marcoaurelio21-ti.github.io/aula01.transforme/" target="_blank" rel="noopener noreferrer" class="btn-projeto">ACESSAR PROJETO</a>
+                </div>
+            </article>
+
+            <article class="card-projeto">
+                <img src="Icon.png" alt="Preview do Portfólio" class="preview">
+                <h2>Primeiro Portfólio</h2>
+                <span class="status concluido">✓ Concluído</span>
+                <p>Este projeto é o meu Portfólio Web Pessoal, desenvolvido para apresentar a minha trajetória profissional como desenvolvedor Front-End e de Automação (RPA), além da minha formação acadêmica, cursos e canais de contato.</p>
+                <div class="tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>RPA</span>
+                </div>
+                <div class="botoes-projeto">
+                    <a href="https://marcoaurelio21-ti.github.io/meu_portiforio/" target="_blank" rel="noopener noreferrer" class="btn-projeto">VER SITE</a>
+                    <a href="https://github.com/MarcoAurelio21-TI/meu_portiforio" target="_blank" rel="noopener noreferrer" class="btn-projeto">CÓDIGO</a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+</div>
+
+<button id="btn-topo" title="Voltar ao topo">↑</button>
+
+<script>
+    const btnTopo = document.getElementById('btn-topo');
+    window.addEventListener('scroll', () => {
+        btnTopo.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    btnTopo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach(e => { if (e.isIntersecting) e.target.classList.add('visivel'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('section').forEach(s => {
+        s.classList.add('revelar');
+        observador.observe(s);
+    });
+
+    const toggleTema = document.getElementById('toggleTema');
+    if (localStorage.getItem('tema') === 'light') {
+        document.body.classList.add('light');
+        toggleTema.textContent = '☀️';
+    }
+    toggleTema.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        const claro = document.body.classList.contains('light');
+        toggleTema.textContent = claro ? '☀️' : '🌙';
+        localStorage.setItem('tema', claro ? 'light' : 'dark');
+    });
+</script>
 
 </body>
 </html>

@@ -3,10 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agradecimento</title>
-    <link rel="stylesheet" href="systle/systle.css.txt">
+    <title>Marco Aurélio | Mensagem Enviada</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="icon" type="image/x-icon" href="Icon.png">
 </head>
 <body>
-    
+
+<div class="pagina">
+
+    <button class="toggle-tema" id="toggleTema" title="Alternar tema">🌙</button>
+
+    <header class="cabecalho">
+        <nav>
+            <ul class="menu-navegacao">
+                <li><a href="index.html">Sobre mim</a></li>
+                <li><a href="projeto.html">Projetos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="agradecimento.html" class="ativo">Agradecimento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="conteudo-principal">
+
+        <section class="introducao">
+            <h1>MENSAGEM ENVIADA!</h1>
+            <p>Obrigado pelo contato. Recebi sua mensagem e em breve retornarei o e-mail!</p>
+        </section>
+
+        <section class="mensagem-motivacional">
+            <div class="centralizado">
+                <blockquote>
+                    <h3>"A caminhada é dura, mas a chegada vale cada passo."</h3>
+                    <p>Crescer na vida quando as circunstâncias ao seu redor parecem totalmente desfavoráveis exige muito mais do que apenas vontade: exige coragem inabalável, disciplina diária e a convicção absoluta de que a sua origem jamais determinará o seu destino.</p>
+                    <p>Passar por momentos difíceis não é um sinal para desacelerar ou desistir, mas sim a prova de que você está sendo testado e forjado para suportar responsabilidades e conquistas muito maiores. A dor do processo é temporária, mas o orgulho da vitória é permanente.</p>
+                    <p>Cada madrugada silenciosa de estudo, cada renúncia, cada desafio superado e cada dia de dedicação constante são tijolos fundamentais na construção da sua melhor versão. Nada do que você viveu foi em vão.</p>
+                    <p>Não compare o seu ponto de partida com o ponto de chegada de ninguém. O seu caminho é único. As mentes mais fortes, preparadas e brilhantes são moldadas justamente nas batalhas mais difíceis e nos cenários mais improváveis.</p>
+                    <p><strong>Mantenha a cabeça erguida, confie no processo e continue evoluindo todos os dias!</strong></p>
+                    <p><strong>Assinado: Marco Aurélio Oliveira Alves</strong></p>
+                </blockquote>
+            </div>
+        </section>
+
+        <section class="galeria-fotos">
+            <div class="container-fotos">
+                <img src="Foto01.png" alt="Foto da trajetória 1" class="foto-item">
+                <img src="Foto02.png" alt="Foto da trajetória 2" class="foto-item">
+                <img src="Foto03.png" alt="Foto da trajetória 3" class="foto-item">
+                <img src="Foto04.png" alt="Foto da trajetória 4" class="foto-item">
+                <img src="Foto05.png" alt="Foto da trajetória 5" class="foto-item">
+            </div>
+        </section>
+
+        <div class="centralizado">
+            <a href="index.html" class="btn-projeto">VOLTAR AO INÍCIO</a>
+        </div>
+
+    </main>
+
+</div>
+
+<button id="btn-topo" title="Voltar ao topo">↑</button>
+
+<script>
+    const btnTopo = document.getElementById('btn-topo');
+    window.addEventListener('scroll', () => {
+        btnTopo.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    btnTopo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach(e => { if (e.isIntersecting) e.target.classList.add('visivel'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('section').forEach(s => {
+        s.classList.add('revelar');
+        observador.observe(s);
+    });
+
+    const toggleTema = document.getElementById('toggleTema');
+    if (localStorage.getItem('tema') === 'light') {
+        document.body.classList.add('light');
+        toggleTema.textContent = '☀️';
+    }
+    toggleTema.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        const claro = document.body.classList.contains('light');
+        toggleTema.textContent = claro ? '☀️' : '🌙';
+        localStorage.setItem('tema', claro ? 'light' : 'dark');
+    });
+</script>
+
 </body>
 </html>

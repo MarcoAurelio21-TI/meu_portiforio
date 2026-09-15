@@ -3,10 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato</title>
-    <link rel="stylesheet" href="systle/systle.css.txt">
+    <title>Marco Aurélio | Contato</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="icon" type="image/x-icon" href="Icon.png">
 </head>
 <body>
-    
+
+<div class="pagina">
+
+    <button class="toggle-tema" id="toggleTema" title="Alternar tema">🌙</button>
+
+    <header class="cabecalho">
+        <nav>
+            <ul class="menu-navegacao">
+                <li><a href="index.html">Sobre mim</a></li>
+                <li><a href="projeto.html">Projetos</a></li>
+                <li><a href="contato.html" class="ativo">Contato</a></li>
+                <li><a href="agradecimento.html">Agradecimento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        <section class="introducao">
+            <h1>ENTRE EM CONTATO</h1>
+            <p>Sinta-se à vontade para mandar uma mensagem ou me chamar diretamente no WhatsApp!</p>
+        </section>
+
+        <div class="opcao-whatsapp">
+            <a href="https://wa.me/5511939400970?text=Ol%C3%A1%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20com%20voc%C3%AA!" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                <img src="Whatsapp.png" alt="Ícone do WhatsApp" class="icone-whatsapp" width="24" height="24">
+                <span>Falar no WhatsApp</span>
+            </a>
+        </div>
+
+        <div class="divisor">
+            <span>ou envie um e-mail</span>
+        </div>
+
+        <form class="formulario-contato" action="https://formspree.io/f/mdeojyzd" method="POST">
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+            </div>
+
+            <div class="campo">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="_replyto" placeholder="seuemail@exemplo.com" required>
+            </div>
+
+            <div class="campo">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-projeto btn-enviar">ENVIAR MENSAGEM</button>
+        </form>
+    </main>
+
+</div>
+
+<button id="btn-topo" title="Voltar ao topo">↑</button>
+
+<script>
+    const btnTopo = document.getElementById('btn-topo');
+    window.addEventListener('scroll', () => {
+        btnTopo.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    btnTopo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const toggleTema = document.getElementById('toggleTema');
+    if (localStorage.getItem('tema') === 'light') {
+        document.body.classList.add('light');
+        toggleTema.textContent = '☀️';
+    }
+    toggleTema.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        const claro = document.body.classList.contains('light');
+        toggleTema.textContent = claro ? '☀️' : '🌙';
+        localStorage.setItem('tema', claro ? 'light' : 'dark');
+    });
+</script>
+
 </body>
 </html>
